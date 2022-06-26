@@ -17,7 +17,7 @@ def test_submit_form():
     lastname = 'Vu'
     user_email = 'test@test.ru'
     genter_wrapper = 'Female'
-    user_number = '89998887766'
+    mobile = '89998887766'
     subjects_input = 'Chemistry'
     hobbies_wrapper = 'Reading'
     upload_picture = '/Users/DanVu/PythonProjects/RegistrationForm/Resourses/w9.jpg'
@@ -29,7 +29,7 @@ def test_submit_form():
     browser.element('#lastName').type(lastname)
     browser.element('#userEmail').type(user_email)
     browser.element('#genterWrapper').should(have.text(genter_wrapper)).click()
-    browser.element('#userNumber').type(user_number)
+    browser.element('#userNumber').type(mobile)
     # Date of Birth
     browser.element('#dateOfBirthInput').click()
     browser.element('.react-datepicker__month-select').type('October')
@@ -51,6 +51,7 @@ def test_submit_form():
     browser.elements('table tr').element(1).should(have.text(lastname))
     browser.elements('table tr').element(2).should(have.text(user_email))
     browser.elements('table tr').element(3).should(have.text(genter_wrapper))
+    # browser.elements('table tr').element(4).should(have.text(mobile))
     browser.elements("table tr").element(5).should(have.text('2021'))
     browser.elements("table tr").element(5).should(have.text('October'))
     browser.elements("table tr").element(5).should(have.text('18'))
@@ -61,8 +62,3 @@ def test_submit_form():
     browser.elements("table tr").element(10).should(have.text(state))
     browser.elements("table tr").element(10).should(have.text(city))
     browser.element("#closeLargeModal").click()
-
-
-
-
-
