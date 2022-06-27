@@ -1,4 +1,4 @@
-from selene import have
+from selene import have, command
 from selene.support.shared import browser
 
 
@@ -27,8 +27,11 @@ def test_submit_form():
 
     browser.element('#firstName').type(firstname)
     browser.element('#lastName').type(lastname)
+
     browser.element('#userEmail').type(user_email)
+
     browser.element('#genterWrapper').should(have.text(genter_wrapper)).click()
+
     browser.element('#userNumber').type(mobile)
     # Date of Birth
     browser.element('#dateOfBirthInput').click()
@@ -37,13 +40,19 @@ def test_submit_form():
     browser.element("[aria-label='Choose Monday, October 18th, 2021']").click()
     # Sabject
     browser.element('#subjectsInput').type(subjects_input).press_enter()
+
     browser.element('#hobbiesWrapper').should(have.text(hobbies_wrapper)).click()
+
     browser.element('#uploadPicture').type(upload_picture)
+
     browser.element('#currentAddress').type(current_address)
     # State and City
     browser.element('#state').click()
+
     browser.element('#state input').type(state).press_enter()
+
     browser.element('#city input').type(city).press_enter()
+
     browser.element('#submit').click()
     # Checks
     browser.element('#example-modal-sizes-title-lg').should(have.exact_text('Thanks for submitting the form'))
