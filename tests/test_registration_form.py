@@ -94,3 +94,4 @@ def test_submit_form():
     browser.elements("table tr").element(10).should(have.text(city))
 
     browser.element("#closeLargeModal").click()
+
