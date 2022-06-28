@@ -17,7 +17,7 @@ def test_submit_form():
     lastname = 'Vu'
     email = 'test@test.ru'
     gender = 'Female'
-    mobile = '89998887766'
+    mobile = '9998887766'
     subjects_input = 'Chemistry'
     hobbies_wrapper = 'Reading'
     upload_picture = '/Users/DanVu/PythonProjects/RegistrationForm/Resourses/w9.jpg'
@@ -73,7 +73,7 @@ def test_submit_form():
 
     browser.elements('table tr').element(3).should(have.text(gender))
 
-    # browser.elements('table tr').element(4).should(have.text(mobile))
+    browser.elements('table tr').element(4).should(have.text(mobile))
 
     browser.elements("table tr").element(5).should(have.text('2021'))
 
