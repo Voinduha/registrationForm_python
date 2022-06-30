@@ -1,3 +1,5 @@
+import os
+
 from selene import have
 from selene.support.shared import browser
 
@@ -20,7 +22,6 @@ def test_submit_form():
     mobile = '9998887766'
     subjects_input = 'Chemistry'
     hobbies_wrapper = 'Reading'
-    upload_picture = '/Users/DanVu/PythonProjects/RegistrationForm/Resourses/w9.jpg'
     current_address = 'DC'
     state = 'NCR'
     city = 'Delhi'
@@ -49,7 +50,7 @@ def test_submit_form():
 
     browser.element('#hobbiesWrapper').should(have.text(hobbies_wrapper)).click()
 
-    browser.element('#uploadPicture').type(upload_picture)
+    browser.element('#uploadPicture').send_keys(os.path.abspath('../Resources/w9.jpg'))
 
     browser.element('#currentAddress').type(current_address)
 
