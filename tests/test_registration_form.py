@@ -17,8 +17,17 @@ class student:
     name = 'Dan'
     surname = 'Vu'
     email = 'test@test.ru'
+    mobile = '9998887766'
+    hobbies = 'Reading'
     state = 'NCR'
     city = 'Delhi'
+    currentAddress = 'DC'
+
+
+class Calendar:
+    birthYear = '2022'
+    birthMonth = 'July'
+    birthDay = '03'
 
 
 class Gender:
@@ -41,21 +50,21 @@ def test_submit_form():
     gender.all('.custom-radio').element_by(have.exact_text(Gender.female)).click()
 
     phoneNumberInput = browser.element('#userNumber')
-    phoneNumberInput.type('9998887766')
+    phoneNumberInput.type(student.mobile)
 
     # Date of Birth
     browser.element('#dateOfBirthInput').click()
-    browser.element('.react-datepicker__month-select').type('October')
-    browser.element('.react-datepicker__year-select').type('2021')
-    browser.element("[aria-label='Choose Monday, October 18th, 2021']").click()
+    browser.element('.react-datepicker__year-select').element(f'[value="{Calendar.birthYear}"]').click
+    browser.element('.react-datepicker__month-select').element(f'[value="{Calendar.birthMonth}"]').click
+    browser.element(f'.react-datepicker__day--0{Calendar.birthDay}').click()
 
     # Subject
     browser.element('#subjectsInput').type(Subjects.chemistry).press_enter()
     browser.element('#subjectsInput').type(Subjects.maths).press_enter()
 
-    browser.element('#hobbiesWrapper').should(have.text('Reading')).click()
+    browser.element('#hobbiesWrapper').should(have.text(student.hobbies)).click()
     browser.element('#uploadPicture').send_keys(os.path.abspath('../Resources/w9.jpg'))
-    browser.element('#currentAddress').type('DC')
+    browser.element('#currentAddress').type(student.currentAddress)
 
     # State and City
     browser.element('#state').click()
@@ -70,15 +79,15 @@ def test_submit_form():
     browser.elements('table tr').element(1).should(have.text(student.surname))
     browser.elements('table tr').element(2).should(have.text(student.email))
     browser.elements('table tr').element(3).should(have.text(Gender.female))
-    browser.elements('table tr').element(4).should(have.text('9998887766'))
-    browser.elements("table tr").element(5).should(have.text('2021'))
-    browser.elements("table tr").element(5).should(have.text('October'))
-    browser.elements("table tr").element(5).should(have.text('18'))
+    browser.elements('table tr').element(4).should(have.text(student.mobile))
+    browser.elements("table tr").element(5).should(have.text(Calendar.birthYear))
+    browser.elements("table tr").element(5).should(have.text(Calendar.birthMonth))
+    browser.elements("table tr").element(5).should(have.text(Calendar.birthDay))
     browser.elements("table tr").element(6).should(have.text(Subjects.chemistry))
     browser.elements("table tr").element(6).should(have.text(Subjects.maths))
-    browser.elements("table tr").element(7).should(have.text('Reading'))
+    browser.elements("table tr").element(7).should(have.text(student.hobbies))
     browser.elements("table tr").element(8).should(have.text('w9.jpg'))
-    browser.elements("table tr").element(9).should(have.text('DC'))
+    browser.elements("table tr").element(9).should(have.text(student.currentAddress))
     browser.elements("table tr").element(10).should(have.text(student.state))
     browser.elements("table tr").element(10).should(have.text(student.city))
 
