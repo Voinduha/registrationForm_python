@@ -25,9 +25,9 @@ class student:
 
 
 class Calendar:
-    birthYear = '2022'
-    birthMonth = 'July'
-    birthDay = '03'
+    year = '1987'
+    month = 'January'
+    day = '19'
 
 
 class Gender:
@@ -54,9 +54,9 @@ def test_submit_form():
 
     # Date of Birth
     browser.element('#dateOfBirthInput').click()
-    browser.element('.react-datepicker__year-select').element(f'[value="{Calendar.birthYear}"]').click
-    browser.element('.react-datepicker__month-select').element(f'[value="{Calendar.birthMonth}"]').click
-    browser.element(f'.react-datepicker__day--0{Calendar.birthDay}').click()
+    browser.element('.react-datepicker__year-select').element(f'[value="{Calendar.year}"]').click()
+    browser.element(f'.react-datepicker__month-select [value="{0}"]').click()
+    browser.element(f'.react-datepicker__day--0{Calendar.day}').click()
 
     # Subject
     browser.element('#subjectsInput').type(Subjects.chemistry).press_enter()
@@ -80,9 +80,10 @@ def test_submit_form():
     browser.elements('table tr').element(2).should(have.text(student.email))
     browser.elements('table tr').element(3).should(have.text(Gender.female))
     browser.elements('table tr').element(4).should(have.text(student.mobile))
-    browser.elements("table tr").element(5).should(have.text(Calendar.birthYear))
-    browser.elements("table tr").element(5).should(have.text(Calendar.birthMonth))
-    browser.elements("table tr").element(5).should(have.text(Calendar.birthDay))
+    browser.elements("table tr").element(5).should(have.text(Calendar.year))
+    browser.elements("table tr").element(5).should(have.text(Calendar.month))
+    browser.elements("table tr").element(5).should(have.text(
+        f'{Calendar.day} {Calendar.month},{Calendar.year}'))
     browser.elements("table tr").element(6).should(have.text(Subjects.chemistry))
     browser.elements("table tr").element(6).should(have.text(Subjects.maths))
     browser.elements("table tr").element(7).should(have.text(student.hobbies))
